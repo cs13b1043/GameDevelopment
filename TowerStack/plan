@@ -1,0 +1,61 @@
+Box{
+	width, height, position, render()
+}
+MovingBox : Box{ 
+	toPos, froPos
+	xinc, yinc
+	direction
+	bool isfall
+	setOrigin(width/2, heght/2)
+	updateToFro() -> if direction =To & x<mid .. 4 cases
+	updateFall() -> incr y +5
+	toggleFall()
+}
+
+Stack{
+	stack<Box> boxes
+	MovingBox box;
+	numDisplay
+	topY
+	Textbox
+	
+	fallBox() -> box.togglefall()
+	Update()-> if not isfall box.updateToFro() else updateFall()
+		if(box touches floor lose) else( if(boxy>= top)checkBalance() if yes addtoStack & create new box else lose )
+		
+	render()
+}
+
+Game{
+	Stack stck
+	Window window
+	TextBox textbox
+	
+	setup
+	handleInput() -> if key pressed stck.fallBox()
+	update() -> stck.update, window.update()
+	render() -> stck, window, textbox
+}
+
+Window{
+	sf::RenderWindow window
+	Window(title, size)
+	BeginDraw() -> clear
+	EndDraw() -> display
+	Update() -> events close, full screen
+}
+
+TextBox{
+	score
+	lives
+	
+	init(size, font)
+	updateScore(newScore)
+	updateLives(newLives)
+	render()
+}
+main(){
+	new game
+	while()
+		handleInput(), update(), render()	
+}

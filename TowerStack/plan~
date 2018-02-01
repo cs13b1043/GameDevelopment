@@ -1,0 +1,55 @@
+Box{
+	width, height, position, render()
+}
+MovingBox : Box{
+	updateToFro()
+	fall()
+}
+
+Stack{
+	stack<Box> boxes
+	MovingBox box;
+	numDisplay
+	
+	Stacking(){
+		box.fall()
+		balance()
+		addToStack() -> remove if more than numDisplay
+	}
+	
+	Update()-> box.updateToFro()
+}
+
+Game{
+	Stack stck
+	Window window
+	TextBox textbox
+	
+	setup
+	handleInput() -> if key pressed stck.Stacking()
+	update() -> stck.update, window.update()
+	render() -> --
+}
+
+Window{
+	sf::RenderWindow window
+	Window(title, size)
+	BeginDraw() -> clear
+	EndDraw() -> display
+	Update() -> events close, full screen
+}
+
+TextBox{
+	score
+	lives
+	
+	init(size, font)
+	updateScore(newScore)
+	updateLives(newLives)
+	render()
+}
+main(){
+	new game
+	while()
+		handleInput(), update(), render()	
+}
